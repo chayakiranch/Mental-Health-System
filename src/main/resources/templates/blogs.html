@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Home - Mental wellness</title>
+<style>
+/* Reset some default styles */
+body, h1, h2, p, ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background: url("https://i.postimg.cc/mgv3DDxS/img-28.jpg") no-repeat
+		center/cover;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 90%;
+	padding: 30px 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 10000;
+}
+
+header .logo {
+	color: #fff;
+	font-weight: 700;
+	text-decoration: none;
+	font-size: 2em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+header ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header ul li {
+	list-style: none;
+	margin-left: 20px;
+}
+
+header ul li a {
+	text-decoration: none;
+	padding: 6px 15px;
+	color: #fff;
+	border-radius: 20px;
+}
+
+header ul li a:hover, header ul li a.active {
+	background: #fff;
+	color: #2b1055;
+}
+
+.welcome-message {
+	text-align: center;
+	margin-top: 100px;
+	color: white;
+	font-size: 24px;
+	padding: 0.1px;
+	border-radius: 10px;
+}
+
+.container {
+	max-width: 1200px;
+	margin-top: 100px;
+	margin-left: 100px;
+	background: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Blog Table Styles */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+table, th, td {
+	border: 1px solid #ddd;
+}
+
+th, td {
+	padding: 10px;
+	text-align: left;
+}
+
+th {
+	background-color: #DB3134;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+/* Buttons */
+button {
+	background-color: #DB3134;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: #555;
+}
+</style>
+</head>
+<body>
+	<header>
+		<a href="#" class="logo">Green Living</a>
+		<ul>
+			<li><a th:href="@{/admin/home}">Home</a></li>
+			<li><a th:href="@{/admin/blogs}">Blogs</a></li>
+			<li><a th:href="@{/admin/users}" class="users-link">Users</a></li>
+		</ul>
+	</header>
+
+	<div class="container">
+		<!-- Blog Section -->
+		<div class="blogs">
+			<h2>Blogs</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Blog</th>
+						<th>Title</th>
+						<th>Content</th>
+						<th>Author</th>
+						<th>Date</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="blog : ${blogs}">
+						<td th:text="${blog.blogtype}"></td>
+						<td th:text="${blog.title}"></td>
+						<td th:text="${blog.content}"></td>
+						<td th:text="${blog.username}"></td>
+						<td th:text="${blog.date}"></td>
+						<td>
+							<form
+								th:action="@{/admin/updateBlog/{authorid}(authorid=${blog.authorid})}"
+								th:method="get">
+								<button type="submit" class="update-blog-button">Update</button>
+							</form>
+						</td>
+						<td>
+							<form
+								th:action="@{/admin/deleteBlog/{username}/{authorid}(username=${blog.username},authorid=${blog.authorid})}"
+								th:method="post">
+								<button type="submit" class="delete-blog-button">Delete</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer>
+		<!-- Footer content here -->
+	</footer>
+</body>
+</html>

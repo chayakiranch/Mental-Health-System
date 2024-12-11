@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post page</title>
+<style>
+body {
+	min-height: 100vh;
+	background:
+		url("https://i.postimg.cc/MG7BdsgV/pexels-krivec-ales-547115.jpg");
+	background-size: cover;
+	/* Ensures the background image covers the entire body */
+	background-attachment: fixed;
+	/* Keeps the background image fixed while scrolling */
+	overflow-x: hidden;
+	opacity: 0.9;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 90%;
+	padding: 30px 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 10000;
+}
+
+header .logo {
+	color: #fff;
+	font-weight: 700;
+	text-decoration: none;
+	font-size: 2em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+header ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header ul li {
+	list-style: none;
+	margin-left: 20px;
+}
+
+header ul li a {
+	text-decoration: none;
+	padding: 6px 15px;
+	color: #fff;
+	border-radius: 20px;
+}
+
+header ul li a:hover, header ul li a.active {
+	background: #fff;
+	color: #2b1055;
+}
+
+.main {
+	margin-top: 100px;
+}
+
+.blog-card-content {
+	padding: 20px;
+	margin: 20px;
+	margin-left: 100px;
+	margin-right: 100px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	background: rgba(255, 255, 255, 0.236);
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+	backdrop-filter: blur(200px);
+}
+
+.blog-title {
+	font-size: 30px;
+	margin: 0;
+	color: Black;
+}
+
+.blog-card {
+	font-size: 25px;
+	color: black;
+	margin-top: 50px;
+	margin-left: 30px;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.blog-blogtype, .blog-username, .blog-date {
+	font-size: 16px;
+	color: #000080;
+	margin: 0;
+}
+
+.comment-box {
+	width: 50%;
+	padding: 20px;
+	margin-left: 90px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-card {
+	background-color: rgba(249, 249, 249, 0.7);
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form {
+	width: 50%;
+	padding: 20px;
+	margin-left: 80px;
+	margin-right: 100px;
+}
+
+::placeholder {
+	color: #555555;
+	opacity: 1; /* Firefox */
+}
+
+#comment {
+	width: 100%;
+	height: 40px;
+	background: none;
+	font-size: 15px;
+	color: #fff;
+	border: none;
+	border-bottom: 2px solid;
+}
+
+#comment:focus {
+	outline: none;
+}
+
+label {
+	font-weight: bold;
+	color: black;
+	font-size: 30px;
+}
+
+button {
+	background-color: #87ceeb;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<header>
+		<a href="/user/home" class="logo">Green Living</a>
+		<ul>
+			<li><a href="/user/home">Home</a></li>
+			<li><a th:href="@{/user/create}">Create</a></li>
+			<li><a th:href="@{/user/profile}">Profile</a></li>
+			<li><a th:href="@{/user/login}">Logout</a></li>
+
+		</ul>
+	</header>
+	<br>
+	<div class="main">
+		<div class="blog-card-content">
+			<center>
+				<h4 th:text="${blog.title}" class="blog-title"></h4>
+			</center>
+
+			<p th:text="${blog.content}" class="blog-card"></p>
+
+			<div class="footer">
+				<p th:text="${blog.blogtype}" class="blog-blogtype"></p>
+				<p th:text="${blog.username}" class="blog-username"></p>
+				<p th:text="${blog.date}" class="blog-date"></p>
+			</div>
+
+		</div>
+
+
+		<form action="/comment/createcomment" method="post">
+			<input type="hidden" id="blogid" name="blogid"
+				th:value="${blog.authorid}" /> <label for="comment">Comments:</label><br>
+			<br>
+			<br> <input type="text" placeholder="Add your comment"
+				id="comment" name="comment"><br>
+			<br>
+			<button type="submit">Add</button>
+		</form>
+
+		<div class="comment-box">
+			<div th:each="comment : ${comments}" class="comment-card">
+				<p th:text="${comment.comment}"></p>
+			</div>
+		</div>
+</body>
+</html>

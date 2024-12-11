@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	margin: 0;
+	background: url("https://i.postimg.cc/ryDq4JSW/img-18.avif");
+	background-size: cover;
+	background-attachment: fixed;
+	overflow-x: hidden;
+	opacity: 0.9;
+	color: black; /* Changed text color to white for better contrast */
+}
+
+.profile-card {
+	width: 100%;
+	/* Adjust the width as needed (e.g., 70% for 70% coverage) */
+	min-width: 500px; /* Maximum width to limit the card size */
+	margin: 5% auto;
+	/* Center the card and adjust the margin for spacing */
+	background-color: rgba(255, 255, 255, 0.9);
+	/* Semi-transparent background */
+	border-radius: 10px; /* Rounded corners */
+	padding: 30px; /* Increased padding for spacious content */
+	text-align: left;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	/* Added a subtle box shadow */
+}
+
+.profile-details {
+	display: table;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.profile-section {
+	display: table-row;
+}
+
+.label {
+	display: table-cell;
+	width: 150px;
+	padding: 5px 10px;
+}
+
+span {
+	display: table-cell;
+	padding: 5px 10px;
+}
+
+/* Rest of the CSS remains unchanged */
+
+/* ... */
+.profile-details {
+	flex: 2;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.update-button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: #fff;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 20px;
+	transition: background-color 0.3s;
+}
+
+.update-button:hover {
+	background-color: #0056b3;
+}
+</style>
+</head>
+<section>
+
+	<body>
+		<div class="profile-card">
+			<form th:action="@{/profile/update/{username}(username=${username})}"
+				method="post" class="profile-details">
+				<h2>Profile</h2>
+
+				<!-- Add your profile sections here as you did previously -->
+				<table class="profile-details">
+					<tr>
+						<td class="label">Username:</td>
+						<td><span id="username" th:text="${username}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Full Name:</td>
+						<td><span id="fullName"
+							th:text="${profile?.fullName != null ? profile.fullName : '-'}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Email:</td>
+						<td><span id="email"
+							th:text="${profile?.emailAddress != null ? profile.emailAddress : '-'}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Phone Number:</td>
+						<td><span id="phoneNumber"
+							th:text="${profile?.phoneNumber != null ? profile.phoneNumber : '-'}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Address:</td>
+						<td><span id="address"
+							th:text="${profile?.address != null ? profile.address : '-'}"></span></td>
+					</tr>
+					
+					
+					<tr>
+						<td class="label">Date of Birth:</td>
+						<td><span id="dateOfBirth"
+							th:text="${profile?.dateOfBirth != null ? profile.dateOfBirth : '-'}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Gender:</td>
+						<td><span id="gender"
+							th:text="${profile?.gender != null ? profile.gender : '-'}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Location:</td>
+						<td><span id="location"
+							th:text="${profile != null ? profile.location : '-'}"></span></td>
+					</tr>
+					<tr>
+						<td class="label">Password:</td>
+						<td><span id="password" th:text="${password}"></span></td>
+					</tr>
+				</table>
+				<button type="submit" class="update-button">Update Profile</button>
+
+			</form>
+		</div>
+	</body>
+
+</section>
+
+</html>

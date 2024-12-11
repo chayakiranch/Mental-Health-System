@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save Space To Grow</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	min-height: 100vh;
+	background:
+		url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTue9N1q4XuKvuxaFingLTYaeN_QUiKgVxtjg&s");
+	background-size: cover;
+	background-attachment: fixed;
+	overflow-x: hidden;
+	opacity: 0.9;
+	color: #fff;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 50px;
+	color: black;
+}
+
+form {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(30px);
+	border-radius: 10px;
+}
+
+label {
+	color: #2b1055;
+	font-weight: bold;
+}
+
+select, input[type="text"], textarea, input[type="date"] {
+	width: 100%;
+	padding: 8px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+input[type="submit"] {
+	background-color: #2b1055;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 18px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+	background-color: #ffd700;
+}
+
+a {
+	color: black;
+	max-width: 100px;
+	font-size: 20px;
+	background-color: gold;
+	border-radius: 20px;
+	padding: 10px, 20px;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+}
+
+section {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+section img#stars {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	pointer-events: none;
+	z-index: -1;
+}
+</style>
+</head>
+<section>
+
+	<body>
+		<h1>Create a New Journal</h1>
+
+		<form th:action="@{/blog}" method="post">
+			<label for="blogtype">Type:</label> <select name="blogtype"
+				id="blogtype" required="required">
+				<option>Select a type</option>
+				<option value=" Therapy ">Therapy</option>
+				<option value="Relaxation Techniques ">Relaxation Techniques</option>
+				<option value="Healthy Life Style Choices ">Healthy Life Style Choices</option>
+				<option value="Mind fullness And Meditation ">Mind fullness And Meditation</option>
+
+			</select><br>
+			<br> <label for="title">Title:</label> <input type="text"
+				id="title" name="title" required><br>
+			<br> <label for="content">Content:</label><br>
+			<textarea id="content" name="content" rows="5" cols="50" required></textarea>
+			<br>
+			<br> <label for="date">Date:</label><br> <input type="date"
+				id="date" name="date" required><br>
+			<br> <input type="submit" value="Create Blog">
+		</form>
+
+		<center>
+			<a href="/user/home">Home</a>
+		</center>
+
+		<script>
+        // Get references to the elements
+        const stars = document.getElementById('stars');
+
+        // Add scroll event listener
+        window.addEventListener('scroll', function () {
+            // Get the current scroll position
+            let value = window.scrollY;
+
+            // Update element styles based on scroll position
+            stars.style.left = value * 0.25 + 'px';
+        });
+    </script>
+	</body>
+</section>
+</html>

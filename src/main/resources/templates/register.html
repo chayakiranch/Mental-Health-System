@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>Register</title>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	background-size: cover;
+	overflow: hidden;
+	font-family: sans-serif;
+	background: url("https://i.postimg.cc/65P6SZzn/img-15.jpg") no-repeat
+		center/cover;
+}
+
+.ti {
+	padding-top: 10px;
+	color: white;
+	font-size: 50px;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+		sans-serif;
+	font-weight: bold;
+	word-wrap: break-word
+}
+
+section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.info {
+	position: absolute;
+	left: 100px;
+	bottom: 250px;
+	width: 500px;
+	height: 150px;
+	text-align: center;
+	border-radius: 20px;
+	display: flex;
+	font-size: 50px;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-family: "lora", sans-serif;
+}
+
+.form-box {
+	position: absolute;
+	right: 150px;
+	bottom: 100px;
+	width: 400px;
+	height: 450px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+	backdrop-filter: blur(30px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+h2 {
+	font-size: 2em;
+	color: #fff;
+	text-align: center;
+}
+
+.inputbox {
+	position: relative;
+	margin: 30px 0;
+	width: 310px;
+	border-bottom: 2px solid #fff;
+}
+
+.inputbox label {
+	position: absolute;
+	left: 5px;
+	color: #ffffff;
+	font: size 1em;;
+	font-weight: bold;
+}
+
+.inputbox input {
+	width: 100%;
+	height: 50px;
+	background: transparent;
+	border: none;
+	outline: none;
+	font-size: 1em;
+	padding: 10px 35px 0 5px;
+	color: gold;
+	font-weight: bold;
+}
+
+.inputbox ion-icon {
+	position: absolute;
+	right: 8px;
+	color: #fff;
+	font-size: 1.2em;
+	top: 20px;
+}
+
+.forget {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0 15px;
+	font-size: 0.9em;
+	color: #fff;
+}
+
+.forget label:nth-child(2) {
+	order: 1;
+}
+
+.forget label {
+	display: flex;
+	align-items: center;
+}
+
+.forget label input[type="checkbox"] {
+	margin-right: 6px;
+}
+
+.forget label a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.forget label a:hover {
+	color: gold;
+}
+
+button {
+	width: 100%;
+	height: 40px;
+	border-radius: 40px;
+	background: #fff;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: 600;
+}
+
+button:hover {
+	cursor: pointer;
+	color: black;
+	background: gold;
+}
+
+.login {
+	font-size: 0.9em;
+	color: #fff;
+	text-align: center;
+	margin: 25px 0 10px;
+}
+
+.login p a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 600;
+}
+
+.login p a:hover {
+	color: gold;
+}
+
+.register {
+	font-size: 0.9em;
+	color: #fff;
+	text-align: center;
+	margin: 25px 0 10px;
+}
+
+.register p a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 600;
+}
+
+.register p a:hover {
+	color: gold;
+}
+</style>
+</head>
+<body>
+
+	<div class="ti">
+		<center>GREEN LIVING</center>
+	</div>
+	<section>
+		<div class="con">
+			<div class="info">Your complete guide on SUSTAINABILITY</div>
+			<div class="form-box">
+				<div class="form-value">
+					<form th:action="@{/user/register}" method="post">
+						<h2>Register</h2>
+						<div class="inputbox">
+							<ion-icon name="mail-outline"></ion-icon>
+							<input type="email" name="email" required> <label for="">Email</label>
+						</div>
+						<div class="inputbox">
+							<ion-icon name="person-outline"></ion-icon>
+							<input type="text" name="username" required> <label
+								for="">User Name</label>
+						</div>
+						<div class="inputbox">
+							<ion-icon name="lock-closed-outline"></ion-icon>
+							<input type="password" name="password" required> <label
+								for="">Password</label>
+						</div>
+
+						<button type="submit" value="Register">Register</button>
+						<div class="login">
+							<p>
+								Have an account ? <a th:href="@{/user/login}">Login</a>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script
+		src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+	<script
+		src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+</body>
+</html>
